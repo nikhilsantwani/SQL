@@ -1,0 +1,509 @@
+npm install react-router-dom
+
+#SQL :- structured query language help in 
+communicate with relational database
+perfome CURD 
+Create
+Read
+Update
+Delete
+SEQUEL (Structured English Query Language)/(created by IBM) :- first name
+
+Database Structure :- 
+inter related data ko store kerate h in form of table
+Table :- combination of row and table 
+Column :- General Structure/Schema(Design) 
+Row :- individual data batati h 
+
+#create Database :-
+CREATE DATABASE db_name;
+to remove database :- 
+DROP DATABASE db_name;
+
+To use anyData Base :-
+Use db_name;
+
+Creating table :- 
+Use db_name;
+
+CREATE TABLE table_name (
+column_name1 datatype constraint,
+column_name2 dataype constraint,
+column_name2 datatype constraint
+);
+
+#Database :- 
+Types 2
+(1) Relational :- jisme data table ki form m store ho (RDBM)
+eg:- Mysql,oracle
+(2) Non Relational :- jisme data bina table k store ho
+eg:- MongoDB
+
+
+
+
+
+
+
+
+Type of Sql :-
+DDL :- (Data Defination Language) :- datbase , date table,schema create kerna h ya change kerna. Commands are use in SQL (create, alter, rename, truncate & drop)
+
+DQL (DATA Query Language) :- table ke ander ka data dekhne ke liye 
+Commands are use in SQL (Select)
+ 
+
+DML (Data Manipulation Language) :-
+row ko change kerna,new data insert kerna, data update kerna 
+Commands are use in SQL (Select)
+
+DCL (Data Control Language) :- 
+access dene ke kaam aati h. hmm user ka ko access de skte h
+permission  dene ke kaam m aati h.Commands are use in SQL ()
+
+TCL(Transaction Control Language) :-
+use in advance DBMS
+
+
+Database related Queries :- 
+CREATE DATABASE db_name;
+CREATE DATABASE "IF NOT EXISTS" db_name
+
+
+DROP DATABASE db_name;
+DROP DATABASE "IF EXISTS" db_name
+
+
+
+drop database college;
+CREATE DATABASE college;
+USE sakila;
+
+CREATE TABLE student(
+rollno INT PRIMARY KEY,
+name VARCHAR(50),
+marks INT NOT NULL,
+grade VARCHAR(1),
+city VARCHAR(20)
+);
+
+INSERT INTO student
+(rollno,name,marks,grade,city)
+VALUES
+(101,"anil",78,"C","Pune"),
+(102,"bhumika",93,"A","Mumbai"),
+(103,"chetan",85,"B","Mumbai"),
+(104,"dhruv",96,"A","Delhi"),
+(105,"farah",73,"B","Delhi");
+
+INSERT INTO student
+(rollno,name,marks,grade,city)
+VALUES
+(106,"arah",83,"B","Delhi");
+
+INSERT INTO student
+(rollno,name,marks,grade,city)
+VALUES
+(107,"chetan",85,"B","Mumbai");
+
+ -- select city,name, count(rollno) FROM student group by city,name
+ select city,avg(marks) from student group by city order by avg(marks) desc;
+ -- select COUNT(name),city from student Where grade ='A' group by city having max(marks) > 90 order by city;
+
+(Q) for given table find total payment according to each payment method.
+create database payment;
+use payment;
+create table payment(
+customer_id INT PRIMARY KEY,
+customer VARCHAR(50),
+mode VARCHAR(50),
+city VARCHAR(50)
+);
+INSERT into payment
+(customer_id,customer,mode,city)
+VALUES
+(101, 'Olivia Barrett', 'Netbanking', 'Portland'),
+(102, 'Ethan Sinclair', 'Credit Card', 'Miami'),
+(103, 'Maya Hernandez', 'Credit Card', 'Seattle'),
+(104, 'Liam Donovan', 'Netbanking', 'Denver'),
+(105, 'Sophia Nguyen', 'Credit Card', 'New Orleans'),
+(106, 'Caleb Foster', 'Debit Card', 'Minneapolis'),
+(107, 'Ava Patel', 'Debit Card', 'Phoenix'),
+(108, 'Lucas Carter', 'Netbanking', 'Boston'),
+(109, 'Isabella Martinez', 'Netbanking', 'Nashville'),
+(110, 'Jackson Brooks', 'Credit Card', 'Boston');
+
+SELECT mode,COUNT(customer) AS customer_count
+FROM payment 
+GROUP BY mode
+ORDER BY mode;
+
+
+#Table Related Query :-
+(i) Update :-
+CREATE DATABASE college;
+USE college;
+
+CREATE TABLE student(
+rollno INT PRIMARY KEY,
+name VARCHAR(50),
+marks INT NOT NULL,
+grade VARCHAR(1),
+city VARCHAR(20)
+);
+
+INSERT INTO student
+(rollno,name,marks,grade,city)
+VALUES
+(101,"anil",78,"C","Pune"),
+(102,"bhumika",93,"A","Mumbai"),
+(103,"chetan",85,"B","Mumbai"),
+(104,"dhruv",96,"A","Delhi"),
+(105,"farah",73,"B","Delhi");
+
+INSERT INTO student
+(rollno,name,marks,grade,city)
+VALUES
+(106,"arah",83,"B","Delhi");
+
+INSERT INTO student
+(rollno,name,marks,grade,city)
+VALUES
+(107,"chetan",85,"B","Mumbai");
+
+ -- select city,name, count(rollno) FROM student group by city,name
+ -- select COUNT(name),city from student Where grade ='A' group by city having max(marks) > 90 order by city;
+UPDATE student SET grade = "O" WHERE grade = "A" ;
+SET SQL_SAFE_UPDATES = 0;
+select grade from student
+-- UPDATE student SET marks = 82 WHERE rollno = 105;
+UPDATE student SET grade = "B" WHERE marks between 80 AND 90;
+-- UPDATE student SET marks = marks+1 
+
+(ii) Delete :-
+CREATE DATABASE college;
+USE college;
+
+CREATE TABLE student(
+rollno INT PRIMARY KEY,
+name VARCHAR(50),
+marks INT NOT NULL,
+grade VARCHAR(1),
+city VARCHAR(20)
+);
+
+INSERT INTO student
+(rollno,name,marks,grade,city)
+VALUES
+(101,"anil",78,"C","Pune"),
+(102,"bhumika",93,"A","Mumbai"),
+(103,"chetan",85,"B","Mumbai"),
+(104,"dhruv",96,"A","Delhi"),
+(105,"farah",73,"B","Delhi");
+
+INSERT INTO student
+(rollno,name,marks,grade,city)
+VALUES
+(106,"arah",83,"B","Delhi");
+
+INSERT INTO student
+(rollno,name,marks,grade,city)
+VALUES
+(107,"chetan",85,"B","Mumbai");
+
+ -- select city,name, count(rollno) FROM student group by city,name
+ -- select COUNT(name),city from student Where grade ='A' group by city having max(marks) > 90 order by city;
+ UPDATE student SET marks = 85 WHERE rollno = 104;
+DELETE FROM student marks
+WHERE marks < 33;
+SET SQL_SAFE_UPDATES = 0;
+select * from student
+
+
+==================================
+# Use Of Foreign Key ::--
+CREATE DATABASE college;
+USE college;
+
+CREATE TABLE dept(
+id INT PRIMARY KEY,
+name VARCHAR(50)
+);
+
+INSERT INTO dept
+VALUES
+(101,"english"),
+(102,"IT");
+
+SELECT * FROM dept;
+
+UPDATE dept
+SET id = 111
+where id = 101;
+
+CREATE TABLE teacher (
+id INT PRIMARY KEY,
+name VARCHAR(50),
+dept_id INT,
+FOREIGN KEY (dept_id) REFERENCES dept(id)
+ON DELETE CASCADE
+ON UPDATE CASCADE
+);
+
+INSERT INTO teacher
+VALUES
+(101,"Adam", 101),
+(102,"Eve",102);
+
+select * FROM teacher
+
+# Table related Queries ::-
+  ---------------------
+
+Alter :- it is used to change schema
+
+Add Column :-
+eg:-1)
+CREATE DATABASE college;
+USE college;
+
+CREATE TABLE student(
+ rollno INT PRIMARY KEY,
+ name VARCHAR(50),
+ marks INT NOT NULL,
+ grade VARCHAR(1),
+ city VARCHAR(20)
+ );
+
+ INSERT INTO student
+ (rollno,name,marks,grade,city)
+ VALUES
+ (101,"anil",78,"C","Pune"),
+ (102,"bhumika",93,"A","Mumbai"),
+ (103,"chetan",85,"B","Mumbai"),
+ (104,"dhruv",96,"A","Delhi"),
+ (105,"farah",73,"B","Delhi");
+ALTER TABLE student
+ADD COLUMN age INT;
+
+select * FROM student
+
+
+Drop Column
+
+CREATE DATABASE college;
+USE college;
+
+CREATE TABLE student(
+ rollno INT PRIMARY KEY,
+ name VARCHAR(50),
+ marks INT NOT NULL,
+ grade VARCHAR(1),
+ city VARCHAR(20)
+ );
+
+ INSERT INTO student
+ (rollno,name,marks,grade,city)
+ VALUES
+ (101,"anil",78,"C","Pune"),
+ (102,"bhumika",93,"A","Mumbai"),
+ (103,"chetan",85,"B","Mumbai"),
+ (104,"dhruv",96,"A","Delhi"),
+ (105,"farah",73,"B","Delhi");
+ALTER TABLE student
+DROP COLUMN age;
+
+select * FROM student
+
+
+Rename Table 
+
+CREATE DATABASE college;
+USE college;
+
+CREATE TABLE student(
+ rollno INT PRIMARY KEY,
+ name VARCHAR(50),
+ marks INT NOT NULL,
+ grade VARCHAR(1),
+ city VARCHAR(20)
+ );
+
+ INSERT INTO student
+ (rollno,name,marks,grade,city)
+ VALUES
+ (101,"anil",78,"C","Pune"),
+ (102,"bhumika",93,"A","Mumbai"),
+ (103,"chetan",85,"B","Mumbai"),
+ (104,"dhruv",96,"A","Delhi"),
+ (105,"farah",73,"B","Delhi");
+ALTER TABLE student
+rename to bache;
+
+select * FROM bache
+
+
+Add column
+CREATE DATABASE college;
+USE college;
+
+CREATE TABLE student(
+ rollno INT PRIMARY KEY,
+ name VARCHAR(50),
+ marks INT NOT NULL,
+ grade VARCHAR(1),
+ city VARCHAR(20)
+ );
+
+ INSERT INTO student
+ (rollno,name,marks,grade,city)
+ VALUES
+ (101,"anil",78,"C","Pune"),
+ (102,"bhumika",93,"A","Mumbai"),
+ (103,"chetan",85,"B","Mumbai"),
+ (104,"dhruv",96,"A","Delhi"),
+ (105,"farah",73,"B","Delhi");
+ALTER TABLE student
+Add column age int not null default 19;
+
+select * FROM student
+
+
+# modify column
+
+
+===========================================
+
+#joins :- joins are used to combine rows from two or more tables, based on a related column between them.
+
+#inner joins :-
+create DATABASE college;
+USE college;
+
+ create table student(
+ student_id int primary key,
+ name varchar(50)
+ );
+ 
+ insert into student
+ (student_id,name)
+ values
+(101,"adam"),
+(102,"bob"),
+(103,"cassy");
+ 
+ create table course(
+ student_id int primary key,
+ course varchar(50)
+ );
+ 
+ insert into course
+ (student_id,couse)
+ values
+(102,"english"),
+(105,"math"),
+(103,"science"),
+(107,"computer science");
+ 
+ select * from student inner join course on student.student_id = course.student_id;
+
+#left join :- 
+
+# right join :- 
+
+#full join :-
+
+create DATABASE college;
+USE college;
+
+ create table student(
+ student_id int primary key,
+ name varchar(50)
+ );
+ 
+ insert into student
+ (student_id,name)
+ values
+(101,"adam"),
+(102,"bob"),
+(103,"cassy");
+ 
+ create table course(
+ student_id int primary key,
+ course varchar(50)
+ );
+ 
+ insert into course
+ (student_id,couse)
+ values
+(102,"english"),
+(105,"math"),
+(103,"science"),
+(107,"computer science");
+ 
+ select * from student left join course on student.student_id = course.student_id union  select * from student right join course on student.student_id = course.student_id;
+
+# left exclusive joins:- 
+
+create DATABASE college;
+USE college;
+
+ create table student(
+ student_id int primary key,
+ name varchar(50)
+ );
+ 
+ insert into student
+ (student_id,name)
+ values
+(101,"adam"),
+(102,"bob"),
+(103,"cassy");
+ 
+ create table course(
+ student_id int primary key,
+ course varchar(50)
+ );
+ 
+ insert into course
+ (student_id,couse)
+ values
+(102,"english"),
+(105,"math"),
+(103,"science"),
+(107,"computer science");
+ 
+ select * from student left join course on student.student_id = course.student_id where course.student_id is null;
+
+# right exclusive joins :-
+
+create DATABASE college;
+USE college;
+
+ create table student(
+ student_id int primary key,
+ name varchar(50)
+ );
+ 
+ insert into student
+ (student_id,name)
+ values
+(101,"adam"),
+(102,"bob"),
+(103,"cassy");
+ 
+ create table course(
+ student_id int primary key,
+ course varchar(50)
+ );
+ 
+ insert into course
+ (student_id,couse)
+ values
+(102,"english"),
+(105,"math"),
+(103,"science"),
+(107,"computer science");
+ 
+ select * from student right join course on student.student_id = course.student_id where student.student_id is null;
+
