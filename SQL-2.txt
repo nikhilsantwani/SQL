@@ -1,0 +1,83 @@
+ Write an SQL query to fetch records that are present in one table but not in another table.
+SQL Server – Using MINUS- operator-
+
+SELECT * FROM EmployeeSalary
+MINUS
+SELECT * FROM ManagerSalary;
+
+MySQL – Since MySQL doesn’t have a MINUS operator so we can use LEFT join-
+
+SELECT EmployeeSalary.*
+FROM EmployeeSalary
+LEFT JOIN
+ManagerSalary USING (EmpId)
+WHERE ManagerSalary.EmpId IS NULL;
+  
+. Write an SQL query to fetch the EmpIds that are present in both the tables –  ‘EmployeeDetails’ and ‘EmployeeSalary.
+Using subquery-
+
+SELECT EmpId FROM 
+EmployeeDetails 
+where EmpId IN 
+(SELECT EmpId FROM EmployeeSalary);
+
+
+15. Write an SQL query to fetch the EmpIds that are present in EmployeeDetails but not in EmployeeSalary.
+Using subquery-
+
+SELECT EmpId FROM 
+EmployeeDetails 
+where EmpId Not IN 
+(SELECT EmpId FROM EmployeeSalary);
+
+
+16. Write an SQL query to fetch the employee’s full names and replace the space with ‘-’.
+Using the ‘Replace’ function-
+
+SELECT REPLACE(FullName, ' ', '-') 
+FROM EmployeeDetails;
+
+
+17. Write an SQL query to fetch the position of a given character(s) in a field.
+Using the ‘Instr’ function-
+
+SELECT INSTR(FullName, 'Snow')
+FROM EmployeeDetails;
+
+
+18. Write an SQL query to display both the EmpId and ManagerId together.
+Here we can use the CONCAT command.
+
+SELECT CONCAT(EmpId, ManagerId) as NewId
+FROM EmployeeDetails;
+
+
+19. Write a query to fetch only the first name(string before space) from the FullName column of the EmployeeDetails table.
+In this question, we are required to first fetch the location of the space character in the FullName field and then extract the first name out of the FullName field.
+
+For finding the location we will use the LOCATE method in MySQL and CHARINDEX in SQL SERVER and for fetching the string before space, we will use the SUBSTRING OR MID method.
+
+MySQL – using MID
+
+SELECT MID(FullName, 1, LOCATE(' ',FullName)) 
+FROM EmployeeDetails;
+
+SQL Server – using SUBSTRING
+
+SELECT SUBSTRING(FullName, 1, CHARINDEX(' ',FullName)) 
+FROM EmployeeDetails;
+
+
+20. Write an SQL query to uppercase the name of the employee and lowercase the city values.
+We can use SQL Upper and Lower functions to achieve the intended results.
+
+SELECT UPPER(FullName), LOWER(City) 
+FROM EmployeeDetails;
+
+
+21. Write an SQL query to find the count of the total occurrences of a particular character – ‘n’ in the FullName field.
+Here, we can use the ‘Length’ function. We can subtract the total length of the FullName field from the length of the FullName after replacing the character – ‘n’.
+
+SELECT FullName, 
+LENGTH(FullName) - LENGTH(REPLACE(FullName, 'n', ''))
+FROM EmployeeDetails;
