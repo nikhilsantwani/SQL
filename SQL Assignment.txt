@@ -160,7 +160,8 @@ FROM (
 ) AS ranked_salaries
 WHERE rank = 3;
 
-
+SELECT * FROM Customers
+ORDER BY salary, employee;
 --------------------------------------------------------------------------------
 -- create database past;
 -- use past;
