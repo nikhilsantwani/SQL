@@ -1,4 +1,4 @@
-Write an SQL query to fetch records that are present in one table but not in another table.
+# Write an SQL query to fetch records that are present in one table but not in another table.
 SQL Server – Using MINUS- operator-
 
 SELECT * FROM EmployeeSalary
