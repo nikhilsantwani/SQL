@@ -1,5 +1,3 @@
-
-
 #SQL :- structured query language help in 
 communicate with relational database
 perfome CURD 
@@ -38,9 +36,6 @@ Types 2
 eg:- Mysql,oracle
 (2) Non Relational :- jisme data bina table k store ho
 eg:- MongoDB
-
-
-
 
 
 
